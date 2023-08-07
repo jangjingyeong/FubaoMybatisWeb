@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.kh.common.SqlSessionTemplate;
 import com.kh.notice.model.dao.NoticeDAO;
 import com.kh.notice.model.vo.Notice;
+import com.kh.notice.model.vo.PageData;
 
 public class NoticeService {
 	
@@ -52,11 +53,13 @@ public class NoticeService {
 		return result;
 	}
 
-	public List<Notice> selectNoticeList(int currentPage) {
+	public PageData selectNoticeList(int currentPage) {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
 		List<Notice> nList = nDao.selectNoticeList(session, currentPage);
+		String pageNavi = nDao.generatePageNavi(session, currentPage);
+		PageData pd = new PageData(nList, pageNavi);
 		session.close();
-		return nList;
+		return pd;
 	}
 
 	public Notice selectOneByNo(int noticeNo) {
@@ -65,5 +68,6 @@ public class NoticeService {
 		session.close();
 		return notice;
 	}
+	
 
 }

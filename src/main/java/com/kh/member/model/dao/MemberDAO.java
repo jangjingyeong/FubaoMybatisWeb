@@ -24,7 +24,7 @@ public class MemberDAO {
 		return result;
 	}
 
-	public Member deleteMember(SqlSession session, Member member) {
+	public Member selectCheckLogin(SqlSession session, Member member) {
 		Member mOne = session.selectOne("MemberMapper.selectCheckLogin", member);
 		return mOne;
 	}
@@ -33,6 +33,7 @@ public class MemberDAO {
 		Member member = session.selectOne("MemberMapper.selectOneById", memberId);
 		return member;
 	}
+
 
 
 }

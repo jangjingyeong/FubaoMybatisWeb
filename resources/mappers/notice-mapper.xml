@@ -32,5 +32,10 @@
 	<select id="selectOneByNo" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
 	</select>
-
+<!-- 	여러개의 컬럼을 가져올때는 resultMap, 하나의 결과값을 가져오고 그 결과값이 int라서 resultType을 씀 -->
+	<select id="getTotalCount" resultType="_int">
+	
+		SELECT COUNT(*) FROM NOTICE_TBL
+		
+	</select>
 </mapper>

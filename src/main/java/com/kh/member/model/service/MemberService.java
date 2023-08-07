@@ -51,7 +51,7 @@ public class MemberService {
 
 	public Member selectCheckLogin(Member member) {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
-		Member mOne = mDao.deleteMember(session, member); 
+		Member mOne = mDao.selectCheckLogin(session, member); 
 		session.close();
 		return mOne;
 	}
